@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The Mechanical Jerk | Screaming Frog’s Blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="The Mechanical Jerk" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AI for evil" />
+<meta property="og:description" content="AI for evil" />
+<link rel="canonical" href="https://screaming-frog.github.io/blog/ml/nlp/2020/02/05/mj.html" />
+<meta property="og:url" content="https://screaming-frog.github.io/blog/ml/nlp/2020/02/05/mj.html" />
+<meta property="og:site_name" content="Screaming Frog’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-05T00:00:00-06:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://screaming-frog.github.io/blog/ml/nlp/2020/02/05/mj.html"},"description":"AI for evil","@type":"BlogPosting","url":"https://screaming-frog.github.io/blog/ml/nlp/2020/02/05/mj.html","headline":"The Mechanical Jerk","dateModified":"2020-02-05T00:00:00-06:00","datePublished":"2020-02-05T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://screaming-frog.github.io/blog/feed.xml" title="Screaming Frog's Blog" />
+
+  <script>
+  function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+  }
+  window.onload = wrap_img;
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      // add link icon to anchor tags
+      var elem = document.querySelectorAll(".anchor-link")
+      elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+      // remove paragraph tags in rendered toc (happens from notebooks)
+      var toctags = document.querySelectorAll(".toc-entry")
+      toctags.forEach(e => (e.firstElementChild.innerText = e.firstElementChild.innerText.replace('¶', '')))
+    });
+  </script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Screaming Frog&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Mechanical Jerk</h1><p class="page-description">AI for evil</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-02-05T00:00:00-06:00" itemprop="datePublished">
+        Feb 5, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#ml">ml</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#nlp">nlp</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+<a href="https://github.com/screaming-frog/blog/tree/master/_notebooks/2020-02-05-mj.ipynb" role="button">
+    <img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+</a>
+</div><div class="px-2">
+    <a href="https://colab.research.google.com/github/screaming-frog/blog/blob/master/_notebooks/2020-02-05-mj.ipynb">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-02-05-mj.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p>Sometimes, the anonynimity of the internet relieves whatever societal pressure skewing the battle between superego and id, causing the cesspits we see on Twitter, Reddit, and any other place people talk to each other. I wanted to do something about the rage-inducing interactions between two people who see each other as faceless 'others' where people dehumanise others for not sharing their viewpoint and are, therefore, morons.</p>
+<p>I thought a good idea would be to put my natural language processing (NLP) skillset into use. Have you ever heard of the saying 'you can't win a fight against a heavy bag'? Well what about if the heavy bag could also goad you into a fight as well as hit back? My plan was to finetune a medium sized GPT-2 model such that it could argue with people coherently online and place this model inside bots that could interact with Twitter and Reddit like I'm a modern day Rabbi Loew. By siccing my golems on people who are engaged in flame wars and making the existence of these bots known, I hope to discourage excessive toxicity and raise awareness. After all, if the idiot you're arguing with might be a pile of linear algebra, what's the point in getting angry.</p>
+<p>Of course, all of this is nonsense post-hoc justification for me to watch people get angry and scream impotently into the abyss.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Model">The Model<a class="anchor-link" href="#The-Model">&#182;</a></h2><p>I'm using GPT-2 a transformer model developed by OpenAI using generative pretraining to allow for unsupervised training on text. So similarly to how convolutional neural networks can be pretrained on ImageNet or some large image dataset and finetuned on a much smaller dataset, GPT-2 does the same for language. The objective during pretraining is to simply predict the next word given the preceding text. This is useful because text is rather abundant and usually unlabelled. For more information, read the original paper <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a> or one of the multitude of blog posts on the subject.</p>
+<p>During finetuning, the model is given a comment and the objective is to iteratively predict the next word in the response to the comment until the "&lt; endoftext&gt;" token is predicted, denoting the end of the response.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><p>For my training data, I chose to use the Internet Argument Corpus provided by UC Santa Cruz <a href="https://nlds.soe.ucsc.edu/iac">https://nlds.soe.ucsc.edu/iac</a>. The dataset consists of roughly 73,000,000 words of forum debates on all the juicy topics such as gun control, abortion, the existence of a god, and many more.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Firstly, I trim the fat from the corpus, leaving only the text, discussion id, id, and parent id for each comment. Then come some  preprocessing steps, such as removing posts containing quotations of other posts. This could be parsed properly, cleaned up and included but there's such an abundance of data that it's not necessary. Then it's just cleaning up some '\n' newline characters and random slashes. We randomly sample</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>discussion_id</th>
+      <th>id</th>
+      <th>parent_id</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>4</td>
+      <td>2049</td>
+      <td>4</td>
+      <td>Yeah, he had a recession, and his tax cuts mov...</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4</td>
+      <td>2050</td>
+      <td>4</td>
+      <td>They cut the deficit by 70 thousand million......</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>4</td>
+      <td>15235</td>
+      <td>13912</td>
+      <td>The US is still the closest thing to a pure ...</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+      <td>i just thought that it would be cool to revive...</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4</td>
+      <td>517</td>
+      <td>4</td>
+      <td>capitalism in theory allows people to have equ...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>111563</td>
+      <td>14532</td>
+      <td>409477</td>
+      <td>409473</td>
+      <td>It's now legal for people to carry their guns ...</td>
+    </tr>
+    <tr>
+      <td>111564</td>
+      <td>14532</td>
+      <td>409505</td>
+      <td>409487</td>
+      <td>Whoops! I was wrong. Instead of ad hominem a...</td>
+    </tr>
+    <tr>
+      <td>111565</td>
+      <td>14532</td>
+      <td>409483</td>
+      <td>409477</td>
+      <td>Not to come off negatively, NATO, but you are ...</td>
+    </tr>
+    <tr>
+      <td>111566</td>
+      <td>14532</td>
+      <td>409487</td>
+      <td>409483</td>
+      <td>The refuse to address that such an animal ev...</td>
+    </tr>
+    <tr>
+      <td>111567</td>
+      <td>14532</td>
+      <td>409489</td>
+      <td>409487</td>
+      <td>We have coyotes just outside the yard almost e...</td>
+    </tr>
+  </tbody>
+</table>
+<p>110613 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I parse these debate threads into parent and response pairs, sample 40000 pairs and concatenate them, inserting the special seperator characters that will allow GPT-2 to understand which bits are the parent and which are the response.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>parent</th>
+      <th>child</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>i just thought that it would be cool to revive...</td>
+      <td>I never denied that it didn't. But that was a ...</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>i just thought that it would be cool to revive...</td>
+      <td>Capitolism sucks, unfortunately people are bli...</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>i just thought that it would be cool to revive...</td>
+      <td>unemployment did not decrease during reagans a...</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>i just thought that it would be cool to revive...</td>
+      <td>I'll give to the poor when and if I want to. I...</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>i just thought that it would be cool to revive...</td>
+      <td>capitalism in theory allows people to have equ...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>Source: Merriam-Webster Dictionary of Law, ...</td>
+      <td>Hmmm perhaps I used the wrong word. I meant ...</td>
+    </tr>
+    <tr>
+      <td>96</td>
+      <td>No it definitly goes deeper than that.  It is ...</td>
+      <td>Are you looking for an answer from a creationi...</td>
+    </tr>
+    <tr>
+      <td>97</td>
+      <td>I am aware of this, the UK doesn't have any s...</td>
+      <td>Since you are not a citizen of the USA, you ...</td>
+    </tr>
+    <tr>
+      <td>98</td>
+      <td>bootfitter, just responding to jitobear and I ...</td>
+      <td>Of course you may respond to whomever you wis...</td>
+    </tr>
+    <tr>
+      <td>99</td>
+      <td>Exactly.   And what standard definition is th...</td>
+      <td>I think that syklopps's point in asking jitobe...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">pairs</span><span class="o">.</span><span class="n">parent</span><span class="o">+</span><span class="s1">&#39; ||| &#39;</span><span class="o">+</span><span class="n">pairs</span><span class="o">.</span><span class="n">child</span><span class="o">+</span><span class="s1">&#39; &lt;endoftext&gt; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;input-text.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h2><p>Thank god for Docker. The days of worrying about versions of CUDA, CUDNN, Nvidia drivers and Tensorflow being incompatible are over. All training was done in a Docker container on a Google Cloud instance with a beefy V100 GPU attached. My RTX 2060 Super didn't have enough VRAM even when using half-precision. Using Google Cloud spared me from having to deal with the instability of Colab and was a good way to burn the rest of my free credit before it expired. Training was run for</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="screaming-frog/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/ml/nlp/2020/02/05/mj.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Screaming Frog&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Screaming Frog&#39;s Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list">
+  <li><a href="https://github.com/screaming-frog"><svg class="social svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">screaming-frog</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Personal documentation</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
